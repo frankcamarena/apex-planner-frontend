@@ -1,62 +1,61 @@
-// src/App.jsx (Actualizado para incluir AboutMVPView)
+// src/App.jsx (Updated to include Backtesting View)
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Button, Group, Box, Title, Space } from '@mantine/core'; 
 
-// Importar todas las vistas
-import DashboardView from './views/DashboardView'; // Ahora el Dashboard principal
-import OTBMonitoringView from './views/OTBMonitoringView'; // Si renombras la vista de resumen
+// Import all views
+import DashboardView from './views/DashboardView'; 
 import DataEntryView from './views/DataEntryView'; 
 import ProductDetailView from './views/ProductDetailView'; 
 import PlanningIntelligenceView from './views/PlanningIntelligenceView';
-import AboutMVPView from './views/AboutMVPView'; // <-- NUEVA IMPORTACIÓN
+import AboutMVPView from './views/AboutMVPView'; 
+import BacktestingView from './views/BacktestingView'; // <-- NEW IMPORT
 
 function App() {
   return (
     <Router>
-      {/* Barra de Navegación */}
+      {/* Navigation Bar */}
       <Box p="lg" style={{ borderBottom: '1px solid #ddd', backgroundColor: '#fff' }}>
         <Group justify="space-between">
           <Title order={2}>Apex Planner</Title>
           <Group>
-            {/* Botón para Dashboard */}
+            {/* Dashboard */}
             <Button component={Link} to="/" variant="subtle">Dashboard</Button>
             
-            {/* Botón para OTB Monitoring (Detalle de la varianza) */}
-            <Button component={Link} to="/otb-monitoring" variant="subtle">OTB Monitoring</Button>
-            
-            {/* Botón para Planning Intelligence */}
-            <Button component={Link} to="/planning-intelligence" variant="subtle" color="teal">
+            {/* Planning Intelligence (Main Action) */}
+            <Button component={Link} to="/planning-intelligence" variant="filled" color="teal">
               Planning Intelligence
             </Button>
             
-            {/* Botón para Data Entry */}
+            {/* Data Entry (Secondary Action) */}
             <Button component={Link} to="/data-entry" variant="filled">Data Entry</Button>
+            
+            {/* Backtesting & Value Assessment (New Button) */}
+            <Button component={Link} to="/backtesting" variant="subtle" color="orange">Backtesting</Button>
 
-            {/* Botón para el Resumen del MVP */}
+            {/* About MVP */}
             <Button component={Link} to="/about" variant="subtle" color="gray">About MVP</Button>
           </Group>
         </Group>
       </Box>
       <Space h="md" />
       
-      {/* Definición de Rutas */}
+      {/* Routing Definition */}
       <Routes>
         <Route path="/" element={<DashboardView />} />
         
-        {/* RUTA NUEVA: OTB Monitoring (Usando la estructura del Dashboard anterior) */}
-        {/* Nota: Necesitas crear/renombrar OTBMonitoringView si aún no existe */}
-        <Route path="/otb-monitoring" element={<OTBMonitoringView />} /> 
-
-        {/* RUTA: Planning Intelligence */}
+        {/* Planning Intelligence */}
         <Route path="/planning-intelligence" element={<PlanningIntelligenceView />} />
 
         <Route path="/data-entry" element={<DataEntryView />} />
         
-        {/* RUTA: About MVP */}
+        {/* NEW ROUTE: Backtesting */}
+        <Route path="/backtesting" element={<BacktestingView />} />
+
+        {/* About MVP */}
         <Route path="/about" element={<AboutMVPView />} />
 
-        {/* Ruta para el detalle de productos */}
+        {/* Product Detail (kept for data-entry flow) */}
         <Route path="/products/:deptId" element={<ProductDetailView />} /> 
       </Routes>
     </Router>
