@@ -2,11 +2,11 @@
 import React from 'react';
 import { Container, Title, Text, SimpleGrid, Card, Badge, Table, Group, Center } from '@mantine/core';
 
-// Datos Mock (Basados en el OTB de la hoja de cálculo)
+// Mock Data (Based on the OTB spreadsheet)
 const varianceData = [
     { dept: '100 - Slippers', plan: 1068000, actual: 428400, variance: 639600 },
     { dept: '200 - Dress', plan: 620000, actual: 428400, variance: 191600 },
-    { dept: '300 - Casual', plan: 500000, actual: 509200, variance: -9200 }, // Sobrecumplido (negativo)
+    { dept: '300 - Casual', plan: 500000, actual: 509200, variance: -9200 }, // Over-Bought
     { dept: '500 - Sneakers', plan: 500000, actual: 232370, variance: 267630 },
     { dept: '580 - Performance', plan: 600000, actual: 420576, variance: 179424 },
     { dept: '800 - Sandals', plan: 600000, actual: 322642, variance: 277358 },
@@ -23,15 +23,15 @@ const getVarianceBadge = (variance) => {
 const OTBMonitoringView = () => {
   const totalVariance = varianceData.reduce((sum, item) => sum + item.variance, 0);
 
-  // Simulación del componente de Gráfico de Barras
+  // Mock Component for the Bar Chart
   const VarianceChartMock = () => (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Title order={4} mb="md">Variance Breakdown by Department</Title>
         <Text c="dimmed" size="sm" mb="sm">
-            Visualización de la varianza entre el OTB Planificado y la Compra Real (Mock Chart).
+            Visualization of the variance between Planned OTB and Actual Buy (Mock Chart).
         </Text>
         <Center style={{ height: 250, backgroundColor: '#f5f5f5', borderRadius: 8 }}>
-            <Text c="gray" fw={500}>Gráfico de Barras - Datos simulados</Text>
+            <Text c="gray" fw={500}>Bar Chart - Simulated Data</Text>
         </Center>
     </Card>
   );
@@ -40,7 +40,7 @@ const OTBMonitoringView = () => {
     <Container size="xl" py="xl">
         <Title order={1} mb="lg">OTB Monitoring</Title>
         <Text size="lg" mb="xl">
-            Análisis detallado de la varianza del OTB por departamento para el Período actual.
+            Detailed analysis of OTB variance by department for the current Period.
         </Text>
 
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" mb="xl">
@@ -50,7 +50,7 @@ const OTBMonitoringView = () => {
                     {totalVariance >= 0 ? '$' : '-$'}{Math.abs(totalVariance).toLocaleString('en-US')}
                 </Text>
                 <Text c="dimmed" size="sm">
-                    {totalVariance >= 0 ? 'Capacidad restante (Sub-Bought).' : 'Exceso de compra (Over-Bought). '}
+                    {totalVariance >= 0 ? 'Remaining Capacity (Under-Bought).' : 'Excess Purchase (Over-Bought). '}
                 </Text>
             </Card>
             <VarianceChartMock />
